@@ -22,9 +22,7 @@ app.post("/places", async (request, response) => {
     const place = await Place.create(data);
     response.status(201).json(place);
   } catch (error) { console.log(error)
-    response
-      .status(500)
-      .json({ message: "Não foi possivel concluir a operação" });
+  
   }
 });
 
