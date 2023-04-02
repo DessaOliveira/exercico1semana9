@@ -33,7 +33,7 @@ app.get('/places', async (request,response)=>{
     const places = await Place.findAll()
     return response.json(places)
    } catch (error) {
-     response.status(500).json({message:"Não conseguiu proceder com a solicitação"})
+   
    } 
 })
 
