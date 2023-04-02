@@ -28,6 +28,17 @@ app.post("/places", async (request, response) => {
   }
 });
 
+app.get('/places', async (request,response)=>{
+   try {
+    const places = await Place.findAll()
+    return response.json(places)
+   } catch (error) {
+     response.status(500).json({message:"Não conseguiu proceder com a solicitação"})
+   } 
+})
+
+
+
 app.listen(9999, () => {
   console.log("Servidor online");
 });
