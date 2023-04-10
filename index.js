@@ -77,7 +77,27 @@ app.delete("/places/:id", async (request, response) => {
     }
   });
 
+  app.post('/users', async (request, response) => {
 
+    try {
+         const user = {
+
+        name: request.body.name,
+        email: request.body.email,
+        username: request.body.username,
+        password: request.body.password,
+ 
+      }
+
+         const newUser = await User.create(user)
+
+             response.status(201).json(newUser)
+
+    } catch (error) {
+        response.status(500)
+        .json({ message: "Não conseguimos processar sua solicitação." });
+    }
+  });
 
 app.listen(9999, () => {
   console.log("Servidor online");
