@@ -1,6 +1,7 @@
 const express = require("express");
 const connection = require("./src/database");
 const Place = require("./src/models/place");
+const User = require('./src/models/users')
 
 const app = express();
 app.use(express.json());
