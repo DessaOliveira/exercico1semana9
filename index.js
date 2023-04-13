@@ -15,7 +15,7 @@ app.use(express.json());
 connection.authenticate();
 connection.sync({ alter: true });
 
-app.post("/places", async (request, response) => {
+app.post("/places", validateToken, async (request, response) => {
   try {
     const data = {
       name: request.body.name,
@@ -36,7 +36,7 @@ app.post("/places", async (request, response) => {
   }
 });
 
-app.get('/places', async (request,response)=>{
+app.get('/places', validateToken, async (request,response)=>{
    try {
     const places = await Place.findAll()
     return response.json(places)
@@ -44,7 +44,7 @@ app.get('/places', async (request,response)=>{
    
    } 
 })
-app.delete("/places/:id", async (request, response) => {
+app.delete("/places/:id", validateToken, async (request, response) => {
     try {
       await Place.destroy({
         where: {
@@ -61,7 +61,7 @@ app.delete("/places/:id", async (request, response) => {
     }
   });
 
-  app.put("/places/:id", async (request, response) => {
+  app.put("/places/:id", validateToken, async (request, response) => {
     try {
       const placeInDatabase = await Place.findByPk(request.params.id); 
   
@@ -146,7 +146,7 @@ app.delete("/places/:id", async (request, response) => {
         },
         "GUNS_N_ROSES",
         {
-          expiresIn: '1h'
+          expiresIn: '1m'
         }
       )
       response.json({ username: userInDatabase.username,  token });
