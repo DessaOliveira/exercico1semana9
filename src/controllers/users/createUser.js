@@ -1,4 +1,5 @@
 const User = require('../../models/users')
+const bcrypt = require('bcrypt')
 async function createUser (request, response) {
 
     try {
@@ -26,7 +27,7 @@ async function createUser (request, response) {
   
       response.status(201).json(rest);
   
-    } catch (error) {
+    } catch (error) { console.log(error)
       response
         .status(500)
         .json({ message: "Não conseguimos processar sua solicitação." });
